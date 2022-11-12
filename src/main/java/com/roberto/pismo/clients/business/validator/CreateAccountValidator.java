@@ -20,4 +20,5 @@ public class CreateAccountValidator {
         validateFields(client);
         accountPersistence.throwExistsByDocumentNumber(client.getDocumentNumber());
     }
+
 }
