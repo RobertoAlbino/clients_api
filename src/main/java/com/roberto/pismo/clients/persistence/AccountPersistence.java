@@ -15,7 +15,7 @@ public class AccountPersistence {
 
     public AccountModel findById(Long id) {
         var entity = repository.findById(id)
-                .orElseThrow(() -> new BusinessException("O cliente não foi encontrado"));
+                .orElseThrow(() -> new BusinessException("A conta não foi encontrada"));
         return AccountPersistenceMapper.toModel(entity);
     }
 
@@ -28,7 +28,7 @@ public class AccountPersistence {
     public void throwExistsByDocumentNumber(Long documentNumber) {
         var duplicate = repository.existsAccountEntityByDocumentNumber(documentNumber);
         if (duplicate) {
-            throw new BusinessException("Já existe um cliente utilizando o documento informado");
+            throw new BusinessException("Já existe uma conta utilizando o documento informado");
         }
     }
 }
