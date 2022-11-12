@@ -4,9 +4,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 
 @Data
-public class ClientRequest {
+public class AccountRequest {
 
-    @JsonProperty("numero_documento")
+    @JsonProperty("document_number")
     private Long documentNumber;
 
 }
