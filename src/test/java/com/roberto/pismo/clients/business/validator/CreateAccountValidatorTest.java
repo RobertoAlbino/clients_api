@@ -42,4 +42,10 @@ class CreateAccountValidatorTest {
                 accountPersistence.DOCUMENT_NUMBER_DUPLICATED);
     }
 
+    @Test
+    void assertDoesNotThrowsWhenDocumentNumberIsNotDuplicated() {
+        var model = AccountModel.builder().documentNumber(123L).build();
+        Assertions.assertDoesNotThrow(() -> createAccountValidator.validateCreate(model));
+    }
+
 }
