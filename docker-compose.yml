@@ -1,15 +1,15 @@
 version: '3.5'
 services:
 
-  transactions-api:
-    container_name: transactions-api
-    image: transactions_api:latest
+  clients-api:
+    container_name: clients-api
+    image: clients_api:latest
     environment:
       POSTGRES_USER: ${POSTGRES_USER}
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
       DATASOURCE_URL: ${DATASOURCE_URL}
     ports:
-      - "8080:8080"
+      - "8081:8081"
     networks:
       - pismo-network
     restart: unless-stopped
