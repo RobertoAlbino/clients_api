@@ -11,11 +11,14 @@ import org.springframework.stereotype.Component;
 @RequiredArgsConstructor
 public class AccountPersistence {
 
+    public final String DOCUMENT_NUMBER_DUPLICATED = "Já existe uma conta utilizando o documento informado";
+    public final String ACCOUNT_NOT_FOUND = "A conta não foi encontrada";
+
     private final AccountRepository repository;
 
     public AccountModel findById(Long id) {
         var entity = repository.findById(id)
-                .orElseThrow(() -> new BusinessException("A conta não foi encontrada"));
+                .orElseThrow(() -> new BusinessException(ACCOUNT_NOT_FOUND));
         return AccountPersistenceMapper.toModel(entity);
     }
 
@@ -28,7 +31,7 @@ public class AccountPersistence {
     public void throwExistsByDocumentNumber(Long documentNumber) {
         var duplicate = repository.existsAccountEntityByDocumentNumber(documentNumber);
         if (duplicate) {
-            throw new BusinessException("Já existe uma conta utilizando o documento informado");
+            throw new BusinessException(DOCUMENT_NUMBER_DUPLICATED);
         }
     }
 }
